@@ -1,0 +1,21 @@
+package org.cibertec.edu.pe.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Data
+@Table(name = "habitacion")
+public class Habitacion {
+
+	private int Id;
+	private int Nrohabitacion;
+	private String Estado; 
+	
+	
+}

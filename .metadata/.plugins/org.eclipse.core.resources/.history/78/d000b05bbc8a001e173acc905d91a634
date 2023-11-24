@@ -1,0 +1,66 @@
+package org.cibertec.edu.pe.restController;
+
+import java.util.List;
+
+import org.cibertec.edu.pe.entities.HabitacionDto;
+import org.cibertec.edu.pe.entities.RequestDTO;
+import org.cibertec.edu.pe.entities.ReservacionDTO;
+import org.cibertec.edu.pe.entities.ResponseDTO;
+import org.cibertec.edu.pe.restService.HabitacionService;
+import org.cibertec.edu.pe.restService.ServiceReservacion;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping("/reservacion")
+@RestController
+public class restController {
+	
+	@Autowired
+	private ServiceReservacion service;
+	
+	@Autowired
+	private HabitacionService habitaService;
+	
+	@PutMapping("/guardar")
+	public ReservacionDTO guardar(@RequestBody ReservacionDTO dto) {
+		return this.habitaService.guardar(dto);
+	}
+	
+	@GetMapping("/listarHabis")
+	public List<HabitacionDto> listarHabitaciones(){
+		return this.habitaService.getHabitaciones();
+	}
+	
+	@PutMapping("/actualizar")
+	public HabitacionDto actualizarEstado(@RequestBody HabitacionDto dto) {
+		habitaService.actualizarEstadoHabitacion(dto);
+		return dto;	
+	}
+	
+	@PutMapping("/generarReserva")
+	public ResponseDTO generarReservacion(@RequestBody RequestDTO dto) {
+		
+		HabitacionDto habiDto = new HabitacionDto();
+		habiDto.setNrohabitacion(dto.getDto().getHabitacion().getNrohabitacion());
+		habiDto.setEstado(dto.getDto().getHabitacion().getEstado());
+		habitaService.actualizarEstadoHabitacion(habiDto);
+		
+		
+		ReservacionDTO reserDto = new ReservacionDTO();
+		reserDto.setFecha(dto.getDto().getFecha());
+		reserDto.setHabitacion(habiDto);
+		reserDto.setCostoreservacion(dto.getDto().getCostoreservacion());
+		habitaService.guardar(reserDto);
+		
+		ResponseDTO responseDto = new ResponseDTO();
+		responseDto.setEstado("EN PROCESO");
+		responseDto.setRequest(dto);
+		
+		return responseDto;
+	}
+
+}

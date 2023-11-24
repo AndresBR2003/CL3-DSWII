@@ -1,0 +1,17 @@
+package org.cibertec.edu.pe.service;
+
+import org.cibertec.edu.pe.models.Reservacion;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ReservacionServiceImpl implements ReservacionService{
+	
+	@Autowired
+	private ReservacionService reservaService;
+
+	@Override
+	public Reservacion save(Reservacion reservacion) {
+		
+		return reservaService.save(reservacion);
+	}
+
+}

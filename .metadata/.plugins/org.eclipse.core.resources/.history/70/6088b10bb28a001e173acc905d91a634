@@ -1,0 +1,57 @@
+package org.cibertec.edu.pe.restService;
+
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cibertec.edu.pe.entities.HabitacionDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+@Service
+public class HabitacionService {
+
+	private Logger logger = LoggerFactory.getLogger(HabitacionService.class);
+
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Value("${api.jsonplaceholder.baseUri}")
+	private String baseUri;
+	
+	public List<HabitacionDto> getHabitaciones() {
+		List<HabitacionDto> responseUser = new ArrayList<HabitacionDto>();
+		try {
+				ResponseEntity<List<HabitacionDto>> response = restTemplate.exchange(
+		                baseUri + "habitacion/listar",
+		                HttpMethod.GET,
+		                null,
+		                new ParameterizedTypeReference<List<HabitacionDto>>() {}
+		            );
+	            if (response.getStatusCode() == HttpStatus.OK) {
+	                responseUser = response.getBody();
+	                logger.info("Habitaciones recuperado exitosamente!");
+	            }
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("ERROR - " + e.getMessage());
+		}
+		return responseUser;
+	}
+	
+	public HabitacionDto actualizarEstadoHabitacion(@RequestBody HabitacionDto dto) {
+		
+	}
+	
+}

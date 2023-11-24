@@ -1,0 +1,8 @@
+package org.cibertec.edu.pe.repository;
+
+
+
+
+public class ReservacionRepository extends JpaRepository<Habitacion, Integer>{
+
+}

@@ -1,0 +1,26 @@
+package org.cibertec.edu.pe.controller;
+
+
+import org.cibertec.edu.pe.dto.ReservacionRequestDTO;
+import org.cibertec.edu.pe.models.Reservacion;
+import org.cibertec.edu.pe.service.ReservacionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/reservacion")
+public class ReservacionController {
+
+	@Autowired
+	private ReservacionService reserService;
+	
+	@PostMapping("/guardar")
+	public ReservacionResponseDTO guardar(@RequestBody ReservacionRequestDTO reservacion) {
+		reserService.save(reservacion);
+		return reservacion;
+	}
+}

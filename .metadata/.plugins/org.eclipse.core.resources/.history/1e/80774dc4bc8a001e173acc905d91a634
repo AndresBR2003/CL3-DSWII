@@ -1,0 +1,15 @@
+/*package org.cibertec.edu.pe.restService;
+
+
+import org.cibertec.edu.pe.entities.ReservacionDTO;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@FeignClient(value = "reservacion", url = "http://localhost:8082/reservacion")
+public interface ApiRestRservacion {
+
+	@PutMapping("/guardar")
+	public ReservacionDTO guardar(@RequestBody ReservacionDTO reservacion) ;
+}
+*/

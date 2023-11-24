@@ -1,0 +1,35 @@
+package org.cibertec.edu.pe.restService;
+
+import org.cibertec.edu.pe.entities.HabitacionDto;
+import org.cibertec.edu.pe.entities.RequestDTO;
+import org.cibertec.edu.pe.entities.ReservacionDTO;
+import org.cibertec.edu.pe.entities.ResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ServiceImpl implements Service{
+	
+	@Autowired
+	ApiRestHabitacion apiHabitacion;
+	
+	@Autowired
+	ApiRestRservacion apiReservacion;
+
+	@Override
+	public ResponseDTO guardar(RequestDTO dto) {
+		ReservacionDTO reservaciondto = new ReservacionDTO();
+		reservaciondto.setNrohabitacion(dto.getHabitacion().getNrohabitacion());
+		reservaciondto.setCostoreservacion(dto.getCosto());
+		reservaciondto.setFecha(dto.getFecha());
+		
+		apiReservacion.guardar(reservaciondto);
+		
+		HabitacionDto habitaciondto = new HabitacionDto();
+		habitaciondto.setEstado(dto.getHabitacion().getEstado());
+		habitaciondto.setNrohabitacion(dto.getHabitacion().getNrohabitacion());
+		
+		apiHabitacion.actualizarEstado(habitaciondto);
+		
+		return dto;
+	}
+
+}

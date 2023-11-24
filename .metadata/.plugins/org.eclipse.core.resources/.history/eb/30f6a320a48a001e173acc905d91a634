@@ -1,0 +1,56 @@
+package org.cibertec.edu.pe.restService;
+
+import java.lang.annotation.Annotation;
+
+import org.cibertec.edu.pe.entities.HabitacionDto;
+import org.cibertec.edu.pe.entities.RequestDTO;
+import org.cibertec.edu.pe.entities.ReservacionDTO;
+import org.cibertec.edu.pe.entities.ResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ServiceImpl implements ServiceReservacion{
+	
+	@Autowired
+	ApiRestHabitacion apiHabitacion;
+	
+	@Autowired
+	ApiRestRservacion apiReservacion;
+
+	@Override
+	public ResponseDTO guardar(RequestDTO dto) {
+		ReservacionDTO reservaciondto = new ReservacionDTO();
+		reservaciondto.setNrohabitacion(dto.getHabitacion().getNrohabitacion());
+		reservaciondto.setCostoreservacion(dto.getCosto());
+		reservaciondto.setFecha(dto.getFecha());
+		
+		apiReservacion.guardar(reservaciondto);
+		
+		HabitacionDto habitaciondto = new HabitacionDto();
+		habitaciondto.setEstado(dto.getHabitacion().getEstado());
+		habitaciondto.setNrohabitacion(dto.getHabitacion().getNrohabitacion());
+		
+		apiHabitacion.actualizarEstado(habitaciondto);
+		
+		ResponseDTO responsedto = new ResponseDTO();
+		responsedto.setEstado("EN PROCESO");
+		responsedto.setRequest(dto);
+		
+		return responsedto;
+		
+	}
+
+	@Override
+	public Class<? extends Annotation> annotationType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String value() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

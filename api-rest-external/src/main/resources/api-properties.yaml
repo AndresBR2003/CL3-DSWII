@@ -1,0 +1,5 @@
+api:
+    habitacion:
+        baseUri: "http://localhost:8081/"
+    reservacion:
+        baseUri: "http://localhost:8082/"

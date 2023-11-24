@@ -1,0 +1,8 @@
+package org.cibertec.edu.pe.restService;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(value = "reservacion", url = "http://localhost:8082/reservacion")
+public interface ApiRestRservacion {
+
+}

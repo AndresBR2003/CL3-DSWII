@@ -1,0 +1,10 @@
+package org.cibertec.edu.pe.repository;
+
+
+import org.cibertec.edu.pe.models.Habitacion;
+import org.cibertec.edu.pe.models.Reservacion;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class ReservacionRepository extends JpaRepository<Habitacion, Integer>{
+
+}

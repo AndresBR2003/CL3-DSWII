@@ -1,0 +1,15 @@
+/*package org.cibertec.edu.pe.restService;
+
+import org.cibertec.edu.pe.entities.HabitacionDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@FeignClient(value = "habitacion", url = "http://localhost:8081/habitacion")
+public interface ApiRestHabitacion {
+	
+	@PutMapping("/actualizar")
+	public HabitacionDto actualizarEstado(@RequestBody HabitacionDto dto);
+
+}
+*/

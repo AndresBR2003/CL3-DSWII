@@ -1,0 +1,16 @@
+package org.cibertec.edu.pe.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ReservacionDTO {
+
+	private String estado = "en proceso";
+	private String fecha;
+	private int nrohabitacion;
+	private double costoreservacion; 
+}

@@ -1,0 +1,7 @@
+package org.cibertec.edu.pe.entities;
+
+public class ResponseDTO {
+
+	private String estado;
+	private RequestDTO request;
+}

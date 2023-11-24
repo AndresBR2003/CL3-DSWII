@@ -1,0 +1,9 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/HENRRYAPI
+spring.datasource.username=root
+spring.datasource.password=mysql2023hoH9U*
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+
+server.port=8089

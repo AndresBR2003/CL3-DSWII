@@ -1,0 +1,27 @@
+package org.cibertec.edu.pe.service;
+
+import org.cibertec.edu.pe.dto.ReservacionRequestDTO;
+import org.cibertec.edu.pe.models.Reservacion;
+import org.cibertec.edu.pe.repository.ReservacionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ReservacionServiceImpl implements ReservacionService{
+	
+	@Autowired
+	private ReservacionRepository reservaRepo;
+
+
+	@Override
+	public Reservacion save(ReservacionRequestDTO dto) {
+		
+		Reservacion reservacion = new Reservacion();
+		reservacion.setNrohabitacion(dto.getNrohabitacion());
+		reservacion.setCostoreservacion(dto.getCostoreservacion());
+		reservacion.setFecha(dto.getFecha());
+		
+		return reservaRepo.save(reservacion);
+	}
+
+}
